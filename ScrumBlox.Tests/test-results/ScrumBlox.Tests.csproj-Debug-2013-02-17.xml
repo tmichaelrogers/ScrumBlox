@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2013-02-17T07:10:33</TestDate>
+      <Passed>1</Passed>
+      <Errors>2</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>One or more child tests had errors</Message>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2013-02-17T07:13:23</TestDate>
+      <Passed>3</Passed>
+      <Errors>0</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>Test successful
+
+Execution time: 0.68ms</Message>
+    </UnitTestResult>
+  </Results>
+  <Tests>
+    <TestRecord Name="ScrumBlox">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2013-02-17T07:10:33</TestDate>
+          <Passed>1</Passed>
+          <Errors>2</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>One or more child tests had errors</Message>
+        </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2013-02-17T07:13:23</TestDate>
+          <Passed>3</Passed>
+          <Errors>0</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>Test successful
+
+Execution time: 0.67ms</Message>
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="Tests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2013-02-17T07:10:33</TestDate>
+              <Passed>1</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-02-17T07:13:23</TestDate>
+              <Passed>3</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>Test successful
+
+Execution time: 0.67ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="HomeControllerTest">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2013-02-17T07:10:33</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.16ms</Message>
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-02-17T07:13:23</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.05ms</Message>
+                </UnitTestResult>
+              </Results>
+              <Tests>
+                <TestRecord Name="Index">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-02-17T07:10:33</TestDate>
+                      <Passed>1</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.15ms</Message>
+                      <ConsoleOutput />
+                      <ConsoleError />
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-02-17T07:13:23</TestDate>
+                      <Passed>1</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                      <ConsoleOutput />
+                      <ConsoleError />
+                    </UnitTestResult>
+                  </Results>
+                </TestRecord>
+              </Tests>
+            </TestRecord>
+            <TestRecord Name="StoriesFixture">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2013-02-17T07:10:33</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>2</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>One or more child tests had errors</Message>
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-02-17T07:13:23</TestDate>
+                  <Passed>2</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.51ms</Message>
+                </UnitTestResult>
+              </Results>
+              <Tests>
+                <TestRecord Name="CanAddNewStory">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-02-17T07:10:33</TestDate>
+                      <Passed>0</Passed>
+                      <Errors>1</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>System.InvalidCastException : Cannot cast from source type to destination type.</Message>
+                      <StackTrace>at (wrapper dynamic-method) object.lambda_method (System.Runtime.CompilerServices.Closure,object,object) &lt;IL 0x00007, 0x00035&gt;
+at MongoDB.Bson.Serialization.BsonClassMapSerializer.SetDocumentId (object,object) &lt;IL 0x0003e, 0x0005e&gt;
+at MongoDB.Driver.MongoCollection.InsertBatch (System.Type,System.Collections.IEnumerable,MongoDB.Driver.MongoInsertOptions) &lt;IL 0x00102, 0x00391&gt;
+at MongoDB.Driver.MongoCollection.Insert (System.Type,object,MongoDB.Driver.MongoInsertOptions) &lt;IL 0x0001d, 0x00051&gt;
+at MongoDB.Driver.MongoCollection.Insert (System.Type,object) &lt;IL 0x0000a, 0x0003e&gt;
+at MongoDB.Driver.MongoCollection.Insert&lt;ScrumBlox.Domain.Story&gt; (ScrumBlox.Domain.Story) &lt;0x0002f&gt;
+at ScrumBlox.Repositories.Stories.Add (ScrumBlox.Domain.Story) [0x00000] in /Users/mrogers/Projects/ScrumBlox/ScrumBlox/Repositories/Stories.cs:37
+at ScrumBlox.Tests.StoriesFixture.CanAddNewStory () [0x00024] in /Users/mrogers/Projects/ScrumBlox/ScrumBlox.Tests/Repositories/StoriesFixture.cs:35
+at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;) &lt;0x00003&gt;
+at System.Reflection.MonoMethod.Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo) &lt;IL 0x000db, 0x00147&gt;
+</StackTrace>
+                      <ConsoleOutput />
+                      <ConsoleError />
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-02-17T07:13:23</TestDate>
+                      <Passed>1</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.42ms</Message>
+                      <ConsoleOutput />
+                      <ConsoleError />
+                    </UnitTestResult>
+                  </Results>
+                </TestRecord>
+                <TestRecord Name="CanAddTask">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-02-17T07:10:33</TestDate>
+                      <Passed>0</Passed>
+                      <Errors>1</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>System.InvalidCastException : Cannot cast from source type to destination type.</Message>
+                      <StackTrace>at (wrapper dynamic-method) object.lambda_method (System.Runtime.CompilerServices.Closure,object,object) &lt;IL 0x00007, 0x00035&gt;
+at MongoDB.Bson.Serialization.BsonClassMapSerializer.SetDocumentId (object,object) &lt;IL 0x0003e, 0x0005e&gt;
+at MongoDB.Driver.MongoCollection.InsertBatch (System.Type,System.Collections.IEnumerable,MongoDB.Driver.MongoInsertOptions) &lt;IL 0x00102, 0x00391&gt;
+at MongoDB.Driver.MongoCollection.Insert (System.Type,object,MongoDB.Driver.MongoInsertOptions) &lt;IL 0x0001d, 0x00051&gt;
+at MongoDB.Driver.MongoCollection.Insert (System.Type,object) &lt;IL 0x0000a, 0x0003e&gt;
+at MongoDB.Driver.MongoCollection.Insert&lt;ScrumBlox.Domain.Story&gt; (ScrumBlox.Domain.Story) &lt;0x0002f&gt;
+at ScrumBlox.Repositories.Stories.Add (ScrumBlox.Domain.Story) [0x00000] in /Users/mrogers/Projects/ScrumBlox/ScrumBlox/Repositories/Stories.cs:37
+at ScrumBlox.Tests.StoriesFixture.CanAddTask () [0x0003f] in /Users/mrogers/Projects/ScrumBlox/ScrumBlox.Tests/Repositories/StoriesFixture.cs:56
+at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;) &lt;0x00003&gt;
+at System.Reflection.MonoMethod.Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo) &lt;IL 0x000db, 0x00147&gt;
+</StackTrace>
+                      <ConsoleOutput />
+                      <ConsoleError />
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-02-17T07:13:23</TestDate>
+                      <Passed>1</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.08ms</Message>
+                      <ConsoleOutput />
+                      <ConsoleError />
+                    </UnitTestResult>
+                  </Results>
+                </TestRecord>
+              </Tests>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

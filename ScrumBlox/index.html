@@ -1,0 +1,44 @@
+
+<html>
+	<head>
+		<title>ScrumBlox: Agile Product Management Software</title>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+		<script src="Content/js/scrumbloxapi.js"></script>
+		<script src="Content/js/scrumblox.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="Content/css/styles.css">
+	</head>
+	<body>
+<div class="header">ScrumBlox</div>
+<button type="button" data-bind="click: editStoryClick">New Story</button>	
+<div class='edit-story' data-bind="visible: editStoryVisible">
+	<h1>Edit Story</h1>
+	<form data-bind="submit: editStory">
+		<input type='hidden' data-bind="text: editStoryId"/>
+	    <textarea data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" cols="40" rows="3"></textarea><br/>
+	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/><br/>
+	    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" /><br/>
+	    
+	    <button type="submit">Save Story</button>
+	    <button type="button" data-bind="click: closeEditStoryClick">Cancel</button>
+	</form>
+</div>	
+<div class='stories'>
+    <div class='loadingIndicator'><h1>Loading...</h1></div>
+    
+    <div data-bind="foreach: currentStories">
+		<div class='storyCard' data-bind='click: $root.loadStoryForEditing'>
+            	<h3 data-bind='text: UserStory'></h3>
+                <div class='storyTags' data-bind='foreach: (Tags+"").split(",")'><span class='tag' data-bind='text: $data'></span></div>
+                <div class='storyInfo' data-bind='text: StoryPoints'> </div>
+                
+        </div>
+    </div>
+</div>
+	
+
+	    <pre aaa="text: ko.toJSON(currentStories, null, 2)"></pre>
+	</body>
+</html>
