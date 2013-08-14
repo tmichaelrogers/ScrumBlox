@@ -46,18 +46,17 @@ namespace ScrumBlox.Tests
 			
 			newStory.UserStory= "As a user I want to perform an action so that I can blah.";
 
-			Task task = new Task();
+			Story subStory = new Story();
 
-			task.AssignedTo="mrogers@brainloaf.com";
-			task.Title="Edit CSS";
+			subStory.AssignedTo = "mrogers@brainloaf.com";
 
-			newStory.Tasks.Add (task);
+			newStory.SubStories.Add (subStory);
 
 			stories.Add(newStory);
 
 			Story fromDb = stories.Load(newStory.Id);
 
-			Assert.AreEqual(1, fromDb.Tasks.Count);
+			Assert.AreEqual(1, fromDb.SubStories.Count);
 
 		}
 
