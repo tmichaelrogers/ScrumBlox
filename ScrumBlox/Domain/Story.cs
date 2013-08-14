@@ -13,7 +13,7 @@ namespace ScrumBlox.Domain
 	{
 		public Story ()
 		{
-			Tasks = new List<Task>();
+			SubStories = new List<Story>();
 			AcceptanceCriteria = new List<String>();
 
 		}
@@ -25,7 +25,7 @@ namespace ScrumBlox.Domain
 		public string AssignedTo { get; set; }
 		public string CreatedBy { get; set; }
 		public int StoryPoints { get; set; }
-		public List<Task> Tasks { get; set; }
+		public List<Story> SubStories { get; set; }
 		public List<String> AcceptanceCriteria { get; set; }
 	}
 }
