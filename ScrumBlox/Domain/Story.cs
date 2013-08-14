@@ -25,6 +25,7 @@ namespace ScrumBlox.Domain
 		public string AssignedTo { get; set; }
 		public string CreatedBy { get; set; }
 		public int StoryPoints { get; set; }
+		public int Sequence { get; set; }
 		public List<Task> Tasks { get; set; }
 		public List<String> AcceptanceCriteria { get; set; }
 	}
