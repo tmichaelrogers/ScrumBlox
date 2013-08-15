@@ -67,17 +67,12 @@
     <Compile Include="Domain\Story.cs">
       <DependentUpon>Story.cs</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Task.cs" />
     <Compile Include="Repositories\Stories.cs">
       <DependentUpon>Stories.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\StoryController.cs">
       <DependentUpon>StoryController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Board.cs" />
-    <Compile Include="Repositories\Boards.cs" />
-    <Compile Include="Domain\Lane.cs" />
-    <Compile Include="Controllers\BoardController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />

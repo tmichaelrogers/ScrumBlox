@@ -30,7 +30,8 @@ var StoryListModel = function() {
     };
     
     self.closeEditStoryClick = function () {
-    	self.editStoryVisible(false);
+    	//self.editStoryVisible(false);
+    	$('#editModel').modal('hide');
     	self.resetFields();
     };    
     
@@ -54,7 +55,8 @@ var StoryListModel = function() {
         scrumbloxapi.saveStory(editStory);
         
         self.resetFields();
-        self.editStoryVisible(false);
+        //self.editStoryVisible(false);
+        $('#editModel').modal('hide')
     };
     
     self.loadStoryForEditing = function(data) {
@@ -63,6 +65,7 @@ var StoryListModel = function() {
         self.editStoryTags(data.Tags);
         self.editStoryId(data.Id);
         self.editStoryVisible(true);
+        $('#editModel').modal();
     }
     
     self.resetFields = function() {
