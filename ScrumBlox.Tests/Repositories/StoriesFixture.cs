@@ -31,6 +31,7 @@ namespace ScrumBlox.Tests
 			Story newStory = new Story();
 			
 			newStory.UserStory= "As a user I want to perform an action so that I can blah.";
+			newStory.Status = STORY_STATUS.Doing;
 
 			Assert.AreEqual(0,stories.Count);
 			
@@ -65,7 +66,7 @@ namespace ScrumBlox.Tests
 		}
 
 		[Test]
-		public void GetSubStories()
+		public void CanGetSubStories()
 		{
 			Stories stories = new Stories();
 

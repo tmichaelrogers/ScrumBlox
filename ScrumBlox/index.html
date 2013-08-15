@@ -80,8 +80,8 @@
 				    <div data-bind="foreach: currentStories">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing'>
 				            	<h3 data-bind='text: UserStory'></h3>
-				                <div class='storyTags' data-bind='foreach: (Tags+"").split(",")'><span class='tag' data-bind='text: $data'></span></div>
-				                <div class='storyInfo' data-bind='text: StoryPoints'> </div>
+				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
+				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
 				        </div>
 				    </div>
 	        	</div>

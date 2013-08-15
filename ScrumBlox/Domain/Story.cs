@@ -10,6 +10,7 @@ using MongoDB.Driver.Builders;
 
 namespace ScrumBlox.Domain
 {
+	public enum STORY_STATUS { Backlog, ToDo, Doing, Done, Tested, Released }
 	public class Story
 	{
 		public Story ()
@@ -27,6 +28,7 @@ namespace ScrumBlox.Domain
 		public string CreatedBy { get; set; }
 		public int StoryPoints { get; set; }
 		public int Sequence { get; set; }
+		public STORY_STATUS Status {get;set;}
 		public List<Guid> SubStories { get; set; }
 		public List<String> AcceptanceCriteria { get; set; }
 	}
