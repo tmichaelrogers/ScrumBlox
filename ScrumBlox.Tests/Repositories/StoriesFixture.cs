@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 using NUnit.Framework;
 
 using ScrumBlox.Domain;
@@ -38,7 +40,7 @@ namespace ScrumBlox.Tests
 		}
 
 		[Test]
-		public void CanAddTask ()
+		public void CanAddSubStory ()
 		{
 			Stories stories = new Stories();
 			
@@ -50,7 +52,9 @@ namespace ScrumBlox.Tests
 
 			subStory.AssignedTo = "mrogers@brainloaf.com";
 
-			newStory.SubStories.Add (subStory);
+			stories.Save (subStory);
+
+			newStory.SubStories.Add (subStory.Id);
 
 			stories.Add(newStory);
 
@@ -59,6 +63,32 @@ namespace ScrumBlox.Tests
 			Assert.AreEqual(1, fromDb.SubStories.Count);
 
 		}
+
+		[Test]
+		public void GetSubStories()
+		{
+			Stories stories = new Stories();
+
+			Story newStory = new Story();
+
+			newStory.UserStory= "As a user I want to perform an action so that I can blah.";
+
+			Story subStory = new Story();
+
+			subStory.AssignedTo = "mrogers@brainloaf.com";
+
+			stories.Save (subStory);
+
+			newStory.SubStories.Add (subStory.Id);
+
+			stories.Add(newStory);
+
+			var substories = stories.GetSubStories (newStory);
+
+			Assert.AreEqual (1, substories.Count());
+
+		}
+
 
 
 	}

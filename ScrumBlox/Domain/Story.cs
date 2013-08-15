@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
@@ -13,7 +14,7 @@ namespace ScrumBlox.Domain
 	{
 		public Story ()
 		{
-			SubStories = new List<Story>();
+			SubStories = new List<Guid>();
 			AcceptanceCriteria = new List<String>();
 
 		}
@@ -26,7 +27,7 @@ namespace ScrumBlox.Domain
 		public string CreatedBy { get; set; }
 		public int StoryPoints { get; set; }
 		public int Sequence { get; set; }
-		public List<Story> SubStories { get; set; }
+		public List<Guid> SubStories { get; set; }
 		public List<String> AcceptanceCriteria { get; set; }
 	}
 }

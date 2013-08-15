@@ -58,6 +58,11 @@ namespace ScrumBlox.Repositories
 			return collection.FindOneAs<Story>(query);
 		}*/
 
+		public MongoCursor<Story> GetSubStories(Story story)
+		{
+			return collection.FindAs<Story>(Query.In ("SubStories", new BsonArray(story.SubStories)));
+		}
+
 	}
 
 }
