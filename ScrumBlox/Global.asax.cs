@@ -21,6 +21,18 @@ namespace ScrumBlox
                 new { controller = "Home", action = "Index", id = "" }
 			);
 
+			routes.MapRoute (
+				"Get Story",
+				"Stories/{id}",
+				new { controller = "Story", action = "Get" }
+			);
+			
+			routes.MapRoute (
+				"Stories API",
+				"Stories/{id}/substories",
+				new { controller = "Story", action = "GetSubStories" }
+			);
+
 		}
 
 		protected void Application_Start ()
