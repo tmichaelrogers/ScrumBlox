@@ -27,6 +27,7 @@ var StoryListModel = function() {
 
     self.editStoryClick = function () {
     	self.editStoryVisible(true);
+    	$('#editModel').modal();
     };
     
     self.closeEditStoryClick = function () {
