@@ -52,22 +52,30 @@
       </div>
     </div>
 	<div class="container-fluid">
-
+		<button type="button" data-bind="click: editStoryClick">New Story</button>	
 		<div class="row-fluid">
 			<div id="editModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<button type="button" data-bind="click: editStoryClick">New Story</button>	
-				<div class='edit-story' data-bind="visible: editStoryVisible">
-					<h1>Edit Story</h1>
-					<form data-bind="submit: editStory">
-						<input type='hidden' data-bind="text: editStoryId"/>
-						
-					    <textarea data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" cols="40" rows="3"></textarea><br/>
-			    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/><br/>
-					    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" /><br/>
-					    <button type="submit" class="btn btn-success">Save</button>
-					    <button type="button" data-bind="click: closeEditStoryClick" class="btn">Cancel</button>
+	
+					<form data-bind="submit: editStory" class="well">
+							<h2>Edit Story</h2>
+
+							<input type='hidden' data-bind="text: editStoryId"/>
+							<label>Title</label>
+				    	    <input data-bind="value: editStoryTitle" placeholder="Enter a title for this story" size="50"/>
+						    
+							<label>User Story</label>
+						    <textarea cols="80" rows="10" data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" ></textarea>
+				    	    <label>Tags</label>
+				    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/>
+						    <label>Estimate</label>
+						    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" />
+					    	<div>
+					    	<button type="submit" class="btn btn-success">Save</button>
+					    	
+					    	<button type="button" data-bind="click: closeEditStoryClick" class="btn">Cancel</button>
+					    	</div>
+					    </div>
 					</form>
-				</div>	
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -79,7 +87,7 @@
 	        	    
 				    <div data-bind="foreach: currentStories">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing'>
-				            	<h3 data-bind='text: UserStory'></h3>
+				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
 				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
 				        </div>
@@ -93,11 +101,6 @@
 
 	</div>
 
-	
-
-	    <pre aaa="text: ko.toJSON(currentStories, null, 2)"></pre>
-	    
-	    		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
 		<script src="Content/js/bootstrap.min.js"></script>

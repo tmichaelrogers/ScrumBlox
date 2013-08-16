@@ -22,6 +22,7 @@ namespace ScrumBlox.Domain
 
 		[BsonId(IdGenerator = typeof(GuidGenerator))]
 		public Guid Id { get; set; }
+		public string Title { get; set; }
 		public string UserStory { get; set; }
 		public string Tags { get; set; }
 		public string AssignedTo { get; set; }

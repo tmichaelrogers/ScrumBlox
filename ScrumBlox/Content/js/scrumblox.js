@@ -11,6 +11,7 @@ var StoryListModel = function() {
 	
     self.currentStories = ko.observableArray([]);
     self.editStoryId = ko.observable();
+    self.editStoryTitle = ko.observable();
     self.editStoryText = ko.observable();
     self.editStoryPoints = ko.observable();
 	self.editStoryTags = ko.observable();
@@ -27,6 +28,7 @@ var StoryListModel = function() {
 
     self.editStoryClick = function () {
     	self.editStoryVisible(true);
+    	$('#editModel').modal();
     };
     
     self.closeEditStoryClick = function () {
@@ -38,6 +40,7 @@ var StoryListModel = function() {
     self.editStory = function() {
     	var editStory = {
     		Id: self.editStoryId(),
+    		Title: self.editStoryTitle(),
             UserStory: self.editStoryText(),
             Tags: self.editStoryTags(),
             StoryPoints: self.editStoryPoints()     
@@ -60,6 +63,7 @@ var StoryListModel = function() {
     };
     
     self.loadStoryForEditing = function(data) {
+    	self.editStoryTitle(data.Title);
     	self.editStoryText(data.UserStory);
         self.editStoryPoints(data.StoryPoints);
         self.editStoryTags(data.Tags);
@@ -69,6 +73,7 @@ var StoryListModel = function() {
     }
     
     self.resetFields = function() {
+	    self.editStoryTitle("");
     	self.editStoryText("");
         self.editStoryPoints("");
         self.editStoryTags("");
