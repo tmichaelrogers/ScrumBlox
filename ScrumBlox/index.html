@@ -86,7 +86,7 @@
 							    </div>
 							    <div class="right">
 							    	<label>Actions</label>
-							    	<p><button class="btn" type="button">Block</button></p>
+							    	<p><button class="btn" type="button" data-bind="text: blockedButton, css: blockedClass, click: toggleBlocked">Block</button></p>
 							    	<p><button class="btn" type="button">Archive</button></p>
 							    	<label>Released In</label>
 							    	<input data-bind="value: editReleasedIn" placeholder="VXX.XX.XX" size="30"/>
@@ -105,76 +105,48 @@
 		<div class="row-fluid">
 	        <div class="span2 stories lane">
 	        	<div>Backlog
-	        	<div class='loadingIndicator'><h1>Loading...</h1></div>
+	        		<div class='loadingIndicator'><h1>Loading...</h1></div>
 	        	</div>
 	        	<div>
-				    <div data-bind="sortable: { data: backlog }" id="0">
+				    <div data-bind="sortable: { template: 'cardTmpl', data: backlog }" id="0"></div>
+				    <script id="cardTmpl" type="text/html">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
 				            	<h3 data-bind='text: Title'></h3>
-				                <div data-bind='foreach: (Tags()+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
-				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
+				                <div data-bind='foreach: TagsOutput'><span class='label' data-bind='text: $data'></span></div>
+				                <div><span class='badge badge-info' data-bind='text: StoryPoints'></span></div>
+				                <div><span class="label label-important" data-bind="visible: Blocked">Blocked</span></div>
 				        </div>
-				    </div>
+				    </script>
 	        	</div>
 	      	</div>
 	        	<div class="span2 stories lane">
 	          		<div>To Do</div>
 	          		<div>
-					    <div data-bind="sortable: { data: todo }" id="1">
-							<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
-					            	<h3 data-bind='text: Title'></h3>
-					                <div data-bind='foreach: (Tags()+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
-					                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
-					        </div>
-					    </div>
+					    <div data-bind="sortable: { template: 'cardTmpl', data: todo }" id="0"></div>
 	        		</div>
           		</div>
 	          <div class="span2 stories lane">
 	          	<div>Doing</div>
            		<div>
-				    <div data-bind="sortable: { data: doing }" id="2">
-						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
-				            	<h3 data-bind='text: Title'></h3>
-				                <div data-bind='foreach: (Tags()+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
-				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
-				        </div>
-				    </div>
+				    <div data-bind="sortable: { template: 'cardTmpl', data: doing }" id="0"></div>
         		</div>	
 	          </div>
 	          <div class="span2 stories lane">
 	          	<div>Done</div>
 	          	<div>
-				    <div data-bind="sortable: { data: done }"  id="3">
-						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
-				            	<h3 data-bind='text: Title'></h3>
-				                <div data-bind='foreach: (Tags()+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
-				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
-				        </div>
-				    </div>
+				    <div data-bind="sortable: { template: 'cardTmpl', data: done }" id="0"></div>
         		</div>
 			  </div>
 	          <div class="span2 stories lane">
 	            <div>Tested</div>
 	          	<div>
-				    <div data-bind="sortable: { data: tested }" id="4">
-						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
-				            	<h3 data-bind='text: Title'></h3>
-				                <div data-bind='foreach: (Tags()+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
-				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
-				        </div>
-				    </div>
+				    <div data-bind="sortable: { template: 'cardTmpl', data: tested }" id="0"></div>
         		</div>
 			  </div>
 	          <div class="span2 stories lane">
 	            <div>Released</div>
 	          	<div>
-				    <div data-bind="sortable: { data: released }" id="5">
-						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
-				            	<h3 data-bind='text: Title'></h3>
-				                <div data-bind='foreach: (Tags()+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
-				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
-				        </div>
-				    </div>
+				    <div data-bind="sortable: { template: 'cardTmpl', data: released }" id="0"></div>
         		</div>
 			  </div>
 		</div>

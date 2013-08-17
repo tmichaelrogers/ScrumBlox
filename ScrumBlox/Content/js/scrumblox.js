@@ -37,10 +37,21 @@ var StoryModel = function( story )
 	self.StoryPoints = ko.observable(story.StoryPoints);
 	self.StoryType = ko.observable(story.StoryType);
 	self.ReleasedIn = ko.observable(story.ReleasedIn);
+	self.Blocked = ko.observable(story.Blocked);
+	self.TagsOutput = ko.computed(function() {
+		if (self.Tags() != null)
+		{
+			return self.Tags().split(",");
+		}
+		else return [];
+	});
 	
-	self.storyTypeClass = function(){
+
+	
+	self.storyTypeClass = function(){ //change color of card
 		return self.StoryType() ? self.StoryType().toLowerCase().replace(' ','-') : "";
 	}
+	
 }
 
 var StoryListModel = function() {
@@ -68,6 +79,23 @@ var StoryListModel = function() {
   	self.editStatus = ko.observable(0);
   	
   	self.storyBeingEdited = ko.observable();
+  	
+  	
+  	self.blockedButton = ko.computed( function () {
+		if (self.editBlocked())
+			return "Blocked";
+		else
+			return "Block";
+	});
+	
+	self.blockedClass = ko.computed( function () {
+		if (self.editBlocked())
+			return "btn-danger";
+	});
+  	
+  	self.toggleBlocked = function() {
+  		self.editBlocked(!self.editBlocked());
+  	}
   	
     self.getStories = function() {
  
@@ -147,7 +175,7 @@ var StoryListModel = function() {
     
     self.updateAfterMove = function (arg) {
      	
-    	arg.item.Status = this.id;
+    	arg.item.Status(this.id);
     	
     	scrumbloxapi.saveStory(arg.item);
     };
@@ -167,7 +195,8 @@ var StoryListModel = function() {
 	            Tags: self.editStoryTags(),
 	            StoryPoints: self.editStoryPoints(),
 	            Status: self.editStatus(),
-	            ReleasedIn : self.editReleasedIn()     
+	            ReleasedIn : self.editReleasedIn(),
+	            Blocked : self.editBlocked()   
 	        }
         	updateStory = new StoryModel(editStory);
         	self.insertStoryModel(updateStory);
@@ -185,14 +214,16 @@ var StoryListModel = function() {
             updateStory.StoryPoints(self.editStoryPoints());
             updateStory.Status(self.editStatus())
             updateStory.ReleasedIn(self.editReleasedIn());
+            updateStory.Blocked(self.editBlocked());
         	
         }
         scrumbloxapi.saveStory(ko.toJS(updateStory),function(data){ 
         	updateStory.Id(data)} );
         //scrumbloxapi.saveStory(editStory);
-        self.resetFields();
+        
         //self.editStoryVisible(false);
-        $('#editModel').modal('hide')
+        $('#editModel').modal('hide');
+
     };
     
     self.loadStoryForEditing = function(data) {
@@ -205,6 +236,7 @@ var StoryListModel = function() {
         self.editStoryType(data.StoryType());
         self.editReleasedIn(data.ReleasedIn());
         self.editStatus(data.Status());
+        self.editBlocked(data.Blocked());
         self.storyBeingEdited(data);
         $('#editModel').modal();
     }
@@ -217,13 +249,16 @@ var StoryListModel = function() {
         self.editStoryId("");
         self.editStoryType("");
         self.editReleasedIn("");
+        self.editBlocked(false);
         self.storyBeingEdited(null);
     };
     
 };
 
 storyListModel = new StoryListModel();
-
+$('#editModel').on('hidden', function () {
+  storyListModel.resetFields(); // Clear fields whenever modal is closed
+})
 ko.bindingHandlers.sortable.afterMove = storyListModel.updateAfterMove;
 ko.applyBindings(storyListModel);
  

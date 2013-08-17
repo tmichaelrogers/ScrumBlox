@@ -16,7 +16,7 @@ window.scrumbloxapi = new function () {
 	                story,
 	                function (data) 
 	                { 
-	                	callback(data); 
+	                	if (callback) callback(data); 
 	                },
 	                "json"
                 );
