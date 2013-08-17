@@ -57,14 +57,23 @@
 			<div id="editModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	
 					<form data-bind="submit: editStory" class="well">
+							
 							<h2>Edit Story</h2>
-
+							
 							<input type='hidden' data-bind="text: editStoryId"/>
 							<label>Title</label>
-				    	    <input data-bind="value: editStoryTitle" placeholder="Enter a title for this story" size="50"/>
+				    	    <input data-bind="value: editStoryTitle" class="span12" placeholder="Enter a title for this story" size="100"/>
 						    
 							<label>User Story</label>
 						    <textarea cols="80" rows="10" data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" ></textarea>
+				    	    <label>Story Type</label>
+						    <select data-bind="value: editStoryType">
+						    	<option>New Feature</option>
+						    	<option>Update</option>
+						    	<option>Bug</option>
+						    	<option>Support Request</option>
+						    </select>
+					    	
 				    	    <label>Tags</label>
 				    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/>
 						    <label>Estimate</label>
@@ -86,7 +95,7 @@
 	        	<div>
 	        	    
 				    <div data-bind="foreach: currentStories">
-						<div class='storyCard' data-bind='click: $root.loadStoryForEditing'>
+						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
 				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>

@@ -27,6 +27,7 @@ namespace ScrumBlox.Domain
 		public string Tags { get; set; }
 		public string AssignedTo { get; set; }
 		public string CreatedBy { get; set; }
+		public string StoryType { get; set; }
 		public int StoryPoints { get; set; }
 		public int Sequence { get; set; }
 		public STORY_STATUS Status {get;set;}

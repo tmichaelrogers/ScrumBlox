@@ -13,6 +13,7 @@ var StoryListModel = function() {
     self.editStoryId = ko.observable();
     self.editStoryTitle = ko.observable();
     self.editStoryText = ko.observable();
+    self.editStoryType = ko.observable();
     self.editStoryPoints = ko.observable();
 	self.editStoryTags = ko.observable();
   	self.editStoryVisible = ko.observable(false);
@@ -25,6 +26,10 @@ var StoryListModel = function() {
     ko.computed(function() {
         self.getStories();
     }, self);
+
+	self.storyTypeClass = function(data){
+		return data.StoryType ? data.StoryType.toLowerCase().replace(' ','-') : "";
+	}
 
     self.editStoryClick = function () {
     	self.editStoryVisible(true);
@@ -42,6 +47,7 @@ var StoryListModel = function() {
     		Id: self.editStoryId(),
     		Title: self.editStoryTitle(),
             UserStory: self.editStoryText(),
+            StoryType: self.editStoryType(),
             Tags: self.editStoryTags(),
             StoryPoints: self.editStoryPoints()     
         }
@@ -69,6 +75,7 @@ var StoryListModel = function() {
         self.editStoryTags(data.Tags);
         self.editStoryId(data.Id);
         self.editStoryVisible(true);
+        self.editStoryType(data.StoryType);
         $('#editModel').modal();
     }
     
@@ -78,6 +85,7 @@ var StoryListModel = function() {
         self.editStoryPoints("");
         self.editStoryTags("");
         self.editStoryId("");
+        self.editStoryType("");
     };
     
 };

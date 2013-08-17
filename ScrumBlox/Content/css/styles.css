@@ -16,6 +16,12 @@
 	font-size: 12px;
 }
 
+/* Card Colors */
+.stories .storyCard.new-feature { background: #CCFFCC; }
+.stories .storyCard.bug { background: #FF9999; }
+.stories .storyCard.update { background: #B2CCFF; }
+.stories .storyCard.support-request { background: #FFFF99; }
+
 .storyInfo, .storyTags { color: Black; font-size: 0.9em; margin-bottom: 5px; }
 .twitterUser { color: #77AAFF; text-decoration: none; font-size: 1.1em; font-weight: bold; }
 input.invalid { border: 1px solid red !important; background-color: #FFAAAA !important; }
@@ -23,3 +29,4 @@ input.invalid { border: 1px solid red !important; background-color: #FFAAAA !imp
 input { margin-bottom: 9px; }
 textarea { width: 500px; height: 150px; }
 .loadingIndicator { position: absolute; top: 0.1em; left: 0.1em; font: 0.8em Arial; background-color: #229; color: White; padding: 0.2em 0.5em 0.2em 0.5em; display: none; }
+
