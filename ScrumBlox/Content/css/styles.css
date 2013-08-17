@@ -28,8 +28,19 @@
 input.invalid { border: 1px solid red !important; background-color: #FFAAAA !important; }
 
 input { margin-bottom: 9px; }
-textarea { width: 500px; height: 150px; }
+
 .loadingIndicator { position: absolute; top: 0.1em; left: 0.1em; font: 0.8em Arial; background-color: #229; color: White; padding: 0.2em 0.5em 0.2em 0.5em; display: none; }
 
-#editModel input { width: 500px; } 
+
 .ko_container { min-height: 100px; }
+
+.clear-both { clear: both; }
+
+/* Edit Dialog */
+#editModel input { width: 475px; } 
+#editModel textarea { width: 460px; height: 150px; }
+#editModel div.main { width: 500px; float: left; }
+
+.modal-body .right { width: 175px; float: left; padding: 0 5px; }
+.modal-body .right .btn { width: 175px; }
+#editModel .modal-body .right input { width: 175px; }

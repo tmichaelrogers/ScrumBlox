@@ -63,31 +63,42 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 								<h3>Edit Story</h3>
 							</div>
-							<div class="modal-body">						
-								<input type='hidden' data-bind="text: editStoryId"/>
-								<label>Title</label>
-					    	    <input data-bind="value: editStoryTitle"  placeholder="Enter a title for this story" size="100"/>
-							    
-								<label>User Story</label>
-							    <textarea cols="80" rows="10" data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" ></textarea>
-					    	    <label>Story Type</label>
-							    <select data-bind="value: editStoryType">
-							    	<option>New Feature</option>
-							    	<option>Update</option>
-							    	<option>Bug</option>
-							    	<option>Support Request</option>
-							    </select>
-						    	
-					    	    <label>Tags</label>
-					    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/>
-							    <label>Estimate</label>
-							    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" />
+							<div class="modal-body">
+								<div class="main">						
+									<input type='hidden' data-bind="text: editStoryId"/>
+									<label>Title</label>
+						    	    <input data-bind="value: editStoryTitle" placeholder="Enter a title for this story" size="100"/>
+								    
+									<label>User Story</label>
+								    <textarea cols="80" rows="10" data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" ></textarea>
+						    	    <label>Story Type</label>
+								    <select data-bind="value: editStoryType">
+								    	<option>New Feature</option>
+								    	<option>Update</option>
+								    	<option>Bug</option>
+								    	<option>Support Request</option>
+								    </select>
+							    	
+						    	    <label>Tags</label>
+						    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/>
+								    <label>Estimate</label>
+								    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" />
+							    </div>
+							    <div class="right">
+							    	<label>Actions</label>
+							    	<p><button class="btn" type="button">Block</button></p>
+							    	<p><button class="btn" type="button">Archive</button></p>
+							    	<label>Released In</label>
+							    	<input data-bind="value: editReleasedIn" placeholder="VXX.XX.XX" size="30"/>
+							    </div>
+							    <div class="clear-both"></div>
 							</div>
+	
 					    	<div class="modal-footer">
 						    	<button type="submit" class="btn btn-success">Save</button>
 						    	<button type="button" data-bind="click: closeEditStoryClick" class="btn">Cancel</button>
 					    	</div>
-					    </div>
+		
 					</form>
 			</div>
 		</div>

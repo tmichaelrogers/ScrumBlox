@@ -57,6 +57,9 @@ var StoryListModel = function() {
     self.editStoryPoints = ko.observable();
 	self.editStoryTags = ko.observable();
   	self.editStoryVisible = ko.observable(false);
+  	self.editReleasedIn = ko.observable();
+  	self.editBlocked = ko.observable();
+  	self.editStatus = ko.observable();
   	
     self.getStories = function() {
  
@@ -126,7 +129,9 @@ var StoryListModel = function() {
             UserStory: self.editStoryText(),
             StoryType: self.editStoryType(),
             Tags: self.editStoryTags(),
-            StoryPoints: self.editStoryPoints()     
+            StoryPoints: self.editStoryPoints(),
+            Status: self.editStatus(),
+            ReleasedIn : self.editReleasedIn()     
         }
         
         if (Id="")
@@ -153,6 +158,8 @@ var StoryListModel = function() {
         self.editStoryId(data.Id);
         self.editStoryVisible(true);
         self.editStoryType(data.StoryType);
+        self.editReleasedIn(data.ReleasedIn);
+        self.editStatus(data.Status);
         $('#editModel').modal();
     }
     
@@ -163,6 +170,7 @@ var StoryListModel = function() {
         self.editStoryTags("");
         self.editStoryId("");
         self.editStoryType("");
+        self.editReleasedIn("");
     };
     
 };
