@@ -29,12 +29,18 @@ var StoryModel = function( story )
 {
 	var self = this;
 	
+	self.Id = ko.observable(story.Id);
 	self.Title = ko.observable(story.Title);
 	self.UserStory = ko.observable(story.UserStory);
 	self.Tags = ko.observable(story.Tags);
 	self.Status = ko.observable(story.Status);
 	self.StoryPoints = ko.observable(story.StoryPoints);
 	self.StoryType = ko.observable(story.StoryType);
+	self.ReleasedIn = ko.observable(story.ReleasedIn);
+	
+	self.storyTypeClass = function(){
+		return self.StoryType() ? self.StoryType().toLowerCase().replace(' ','-') : "";
+	}
 }
 
 var StoryListModel = function() {
@@ -50,28 +56,27 @@ var StoryListModel = function() {
     self.tested = ko.observableArray([]);
     self.released = ko.observableArray([]);
     
-    self.editStoryId = ko.observable();
-    self.editStoryTitle = ko.observable();
-    self.editStoryText = ko.observable();
-    self.editStoryType = ko.observable();
-    self.editStoryPoints = ko.observable();
-	self.editStoryTags = ko.observable();
+    self.editStoryId = ko.observable("");
+    self.editStoryTitle = ko.observable("");
+    self.editStoryText = ko.observable("");
+    self.editStoryType = ko.observable("");
+    self.editStoryPoints = ko.observable("");
+	self.editStoryTags = ko.observable("");
   	self.editStoryVisible = ko.observable(false);
-  	self.editReleasedIn = ko.observable();
-  	self.editBlocked = ko.observable();
-  	self.editStatus = ko.observable();
+  	self.editReleasedIn = ko.observable("");
+  	self.editBlocked = ko.observable(false);
+  	self.editStatus = ko.observable(0);
+  	
+  	self.storyBeingEdited = ko.observable();
   	
     self.getStories = function() {
  
 		scrumbloxapi.getAllStories(self.loadStories);
     }
     
-    self.loadStories = function (data) {
-    	for (var i=0;i< data.length; i++)
-    	{
-    		story = data[i];
-    		
-    		switch (story.Status)
+    self.insertStoryModel = function (story)
+    {
+        	switch (story.Status())
     		{
     			case 0:
     				self.backlog.push(story);
@@ -92,6 +97,34 @@ var StoryListModel = function() {
     				self.released.push(story);
     				break;
     		}
+    }
+    
+    self.loadStories = function (data) {
+    	for (var i=0;i< data.length; i++)
+    	{
+    		story = data[i];
+    		
+    		switch (story.Status)
+    		{
+    			case 0:
+    				self.backlog.push(new StoryModel(story));
+    				break;
+    			case 1:
+    				self.todo.push(new StoryModel(story));
+    				break;
+    			case 2:
+    				self.doing.push(new StoryModel(story));
+    				break;
+    			case 3:
+    				self.done.push(new StoryModel(story));
+    				break;
+    			case 4:
+    				self.tested.push(new StoryModel(story));
+    				break;
+    			case 5:
+    				self.released.push(new StoryModel(story));
+    				break;
+    		}
     	}
     }
     
@@ -99,9 +132,7 @@ var StoryListModel = function() {
         self.getStories();
     }, self);
 
-	self.storyTypeClass = function(data){
-		return data.StoryType ? data.StoryType.toLowerCase().replace(' ','-') : "";
-	}
+	
 
     self.editStoryClick = function () {
     	self.editStoryVisible(true);
@@ -123,43 +154,58 @@ var StoryListModel = function() {
     
     
     self.editStory = function() {
-    	var editStory = {
-    		Id: self.editStoryId(),
-    		Title: self.editStoryTitle(),
-            UserStory: self.editStoryText(),
-            StoryType: self.editStoryType(),
-            Tags: self.editStoryTags(),
-            StoryPoints: self.editStoryPoints(),
-            Status: self.editStatus(),
-            ReleasedIn : self.editReleasedIn()     
-        }
+
+        var updateStory, editStory;
         
-        if (Id="")
+        if (self.editStoryId()=="")
         {
-        	self.currentStories.push(editStory);
+           	editStory = {
+	    		Id: self.editStoryId(),
+	    		Title: self.editStoryTitle(),
+	            UserStory: self.editStoryText(),
+	            StoryType: self.editStoryType(),
+	            Tags: self.editStoryTags(),
+	            StoryPoints: self.editStoryPoints(),
+	            Status: self.editStatus(),
+	            ReleasedIn : self.editReleasedIn()     
+	        }
+        	updateStory = new StoryModel(editStory);
+        	self.insertStoryModel(updateStory);
         }
         else
         {
-        	// trigger refresh
-        	self.getStories();
+        	// update existing story
+        	updateStory = self.storyBeingEdited();
+        	
+        	updateStory.Id(self.editStoryId());
+        	updateStory.Title(self.editStoryTitle());
+        	updateStory.UserStory(self.editStoryText());
+            updateStory.StoryType(self.editStoryType());
+            updateStory.Tags(self.editStoryTags());
+            updateStory.StoryPoints(self.editStoryPoints());
+            updateStory.Status(self.editStatus())
+            updateStory.ReleasedIn(self.editReleasedIn());
+        	
         }
-        scrumbloxapi.saveStory(editStory);
-        
+        scrumbloxapi.saveStory(ko.toJS(updateStory),function(data){ 
+        	updateStory.Id(data)} );
+        //scrumbloxapi.saveStory(editStory);
         self.resetFields();
         //self.editStoryVisible(false);
         $('#editModel').modal('hide')
     };
     
     self.loadStoryForEditing = function(data) {
-    	self.editStoryTitle(data.Title);
-    	self.editStoryText(data.UserStory);
-        self.editStoryPoints(data.StoryPoints);
-        self.editStoryTags(data.Tags);
-        self.editStoryId(data.Id);
+    	self.editStoryTitle(data.Title());
+    	self.editStoryText(data.UserStory());
+        self.editStoryPoints(data.StoryPoints());
+        self.editStoryTags(data.Tags());
+        self.editStoryId(data.Id());
         self.editStoryVisible(true);
-        self.editStoryType(data.StoryType);
-        self.editReleasedIn(data.ReleasedIn);
-        self.editStatus(data.Status);
+        self.editStoryType(data.StoryType());
+        self.editReleasedIn(data.ReleasedIn());
+        self.editStatus(data.Status());
+        self.storyBeingEdited(data);
         $('#editModel').modal();
     }
     
@@ -171,6 +217,7 @@ var StoryListModel = function() {
         self.editStoryId("");
         self.editStoryType("");
         self.editReleasedIn("");
+        self.storyBeingEdited(null);
     };
     
 };

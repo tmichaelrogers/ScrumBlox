@@ -10,11 +10,14 @@ window.scrumbloxapi = new function () {
                 });
     };
 
-    this.saveStory = function (story) {
+    this.saveStory = function (story, callback) {
             	$.post(
 	                'http://127.0.0.1:8080/Story/Save',
 	                story,
-	                function (data) { alert('Saved'); },
+	                function (data) 
+	                { 
+	                	callback(data); 
+	                },
 	                "json"
                 );
     };

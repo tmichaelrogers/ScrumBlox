@@ -40,12 +40,12 @@ namespace ScrumBlox.Controllers
 		}
 
 		[HttpPost]
-		public bool Save (Story story)
+		public JsonResult Save (Story story)
 		{
 			Stories stories = new Stories();
 			stories.Save(story);
 
-			return true;
+			return this.Json(story.Id);
 		}
     }
 }
