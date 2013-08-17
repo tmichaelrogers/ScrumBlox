@@ -31,4 +31,5 @@ input { margin-bottom: 9px; }
 textarea { width: 500px; height: 150px; }
 .loadingIndicator { position: absolute; top: 0.1em; left: 0.1em; font: 0.8em Arial; background-color: #229; color: White; padding: 0.2em 0.5em 0.2em 0.5em; display: none; }
 
-.ko_container { min-height: 300px; }
+#editModel input { width: 500px; } 
+.ko_container { min-height: 100px; }

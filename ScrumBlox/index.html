@@ -27,6 +27,7 @@
 	    </style>
     	<link href="Content/css/bootstrap-responsive.min.css" rel="stylesheet" >
 		<link rel="stylesheet" type="text/css" href="Content/css/styles.css">
+		<link href="Content/css/bootstrap-modal.css" rel="stylesheet" />
 	</head>
 	<body>
 	 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -54,34 +55,37 @@
 	<div class="container-fluid">
 		<button type="button" data-bind="click: editStoryClick">New Story</button>	
 		<div class="row-fluid">
-			<div id="editModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div id="editModel" class="modal hide fade" tabindex="-1" data-width="760">
 	
 					<form data-bind="submit: editStory" class="well">
 							
-							<h2>Edit Story</h2>
-							
-							<input type='hidden' data-bind="text: editStoryId"/>
-							<label>Title</label>
-				    	    <input data-bind="value: editStoryTitle" class="span12" placeholder="Enter a title for this story" size="100"/>
-						    
-							<label>User Story</label>
-						    <textarea cols="80" rows="10" data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" ></textarea>
-				    	    <label>Story Type</label>
-						    <select data-bind="value: editStoryType">
-						    	<option>New Feature</option>
-						    	<option>Update</option>
-						    	<option>Bug</option>
-						    	<option>Support Request</option>
-						    </select>
-					    	
-				    	    <label>Tags</label>
-				    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/>
-						    <label>Estimate</label>
-						    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" />
-					    	<div>
-					    	<button type="submit" class="btn btn-success">Save</button>
-					    	
-					    	<button type="button" data-bind="click: closeEditStoryClick" class="btn">Cancel</button>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h3>Edit Story</h3>
+							</div>
+							<div class="modal-body">						
+								<input type='hidden' data-bind="text: editStoryId"/>
+								<label>Title</label>
+					    	    <input data-bind="value: editStoryTitle"  placeholder="Enter a title for this story" size="100"/>
+							    
+								<label>User Story</label>
+							    <textarea cols="80" rows="10" data-bind="value: editStoryText" placeholder="As a <role> I would like to <story> so that <business value>" ></textarea>
+					    	    <label>Story Type</label>
+							    <select data-bind="value: editStoryType">
+							    	<option>New Feature</option>
+							    	<option>Update</option>
+							    	<option>Bug</option>
+							    	<option>Support Request</option>
+							    </select>
+						    	
+					    	    <label>Tags</label>
+					    	    <input data-bind="value: editStoryTags" placeholder="Tags (comma separated)" size="50"/>
+							    <label>Estimate</label>
+							    <input data-bind="value: editStoryPoints" placeholder="Story points" size="10" />
+							</div>
+					    	<div class="modal-footer">
+						    	<button type="submit" class="btn btn-success">Save</button>
+						    	<button type="button" data-bind="click: closeEditStoryClick" class="btn">Cancel</button>
 					    	</div>
 					    </div>
 					</form>
@@ -171,6 +175,8 @@
 		<script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
 		<script src="Content/js/knockout-sortable.js"></script>
 		<script src="Content/js/bootstrap.min.js"></script>
+		<script src="Content/js/bootstrap-modalmanager.js"></script>
+    	<script src="Content/js/bootstrap-modal.js"></script>
 		<script src="Content/js/scrumbloxapi.js"></script>
 		<script src="Content/js/scrumblox.js"></script>
 	</body>
