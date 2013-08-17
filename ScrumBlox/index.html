@@ -88,13 +88,12 @@
 			</div>
 		</div>
 		<div class="row-fluid">
-	        <div class="span3 stories">
+	        <div class="span2 stories lane">
 	        	<div>Backlog
 	        	<div class='loadingIndicator'><h1>Loading...</h1></div>
 	        	</div>
 	        	<div>
-	        	    
-				    <div data-bind="foreach: currentStories">
+				    <div data-bind="sortable: { data: backlog }">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
@@ -103,15 +102,74 @@
 				    </div>
 	        	</div>
 	      	</div>
-	          <div class="span3 stories">To Do</div>
-	          <div class="span3 stories">Doing</div>
-	          <div class="span3 stories">Done</div>
+	        	<div class="span2 stories lane">
+	          		<div>To Do</div>
+	          		<div>
+					    <div data-bind="sortable: { data: todo }">
+							<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
+					            	<h3 data-bind='text: Title'></h3>
+					                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
+					                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
+					        </div>
+					    </div>
+	        		</div>
+          		</div>
+	          <div class="span2 stories lane">
+	          	<div>Doing</div>
+           		<div>
+				    <div data-bind="sortable: { data: doing }">
+						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
+				            	<h3 data-bind='text: Title'></h3>
+				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
+				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
+				        </div>
+				    </div>
+        		</div>	
+	          </div>
+	          <div class="span2 stories lane">
+	          	<div>Done</div>
+	          	<div>
+				    <div data-bind="sortable: { data: done }">
+						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
+				            	<h3 data-bind='text: Title'></h3>
+				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
+				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
+				        </div>
+				    </div>
+        		</div>
+			  </div>
+	          <div class="span2 stories lane">
+	            <div>Tested</div>
+	          	<div>
+				    <div data-bind="sortable: { data: tested }">
+						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
+				            	<h3 data-bind='text: Title'></h3>
+				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
+				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
+				        </div>
+				    </div>
+        		</div>
+			  </div>
+	          <div class="span2 stories lane">
+	            <div>Released</div>
+	          	<div>
+				    <div data-bind="foreach: released">
+						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
+				            	<h3 data-bind='text: Title'></h3>
+				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
+				                <span class='badge badge-info' data-bind='text: StoryPoints'> </span>
+				        </div>
+				    </div>
+        		</div>
+			  </div>
 		</div>
 
 	</div>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+		<script src="Content/js/knockout-sortable.js"></script>
 		<script src="Content/js/bootstrap.min.js"></script>
 		<script src="Content/js/scrumbloxapi.js"></script>
 		<script src="Content/js/scrumblox.js"></script>

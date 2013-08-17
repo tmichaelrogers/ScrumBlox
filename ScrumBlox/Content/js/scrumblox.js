@@ -5,11 +5,39 @@
 // the view model, even though the view model does not know or care about any view that binds to it
 //var stories = [{"Id":"5117babc375e4fe1abe5445b","UserStory":"As a user I want to perform an action so that I can blah.","Tags":null,"AssignedTo":null,"CreatedBy":null,"StoryPoints":0,"Tasks":[{"Id":"5117babc375e4fe1abe5445a","Title":"Edit CSS","AssignedTo":"mrogers@brainloaf.com","Done":false}],"AcceptanceCriteria":[]}];
 
+(function(ko, $, undefined) {
+ko.bindingHandlers.flash = {
+    init: function(element) {
+        $(element).hide();
+    },
+    update: function(element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+        if (value) {
+            $(element).stop().hide().text(value).fadeIn(function() {
+                clearTimeout($(element).data("timeout"));
+                $(element).data("timeout", setTimeout(function() {
+                    $(element).fadeOut();
+                    valueAccessor()(null);
+                }, 3000));
+            });
+        }
+    },
+    timeout: null
+};
+
 var StoryListModel = function() {
 
 	var self = this;
 	
     self.currentStories = ko.observableArray([]);
+    
+    self.backlog = ko.observableArray([]);
+    self.todo = ko.observableArray([]);
+    self.doing = ko.observableArray([]);
+    self.done = ko.observableArray([]);
+    self.tested = ko.observableArray([]);
+    self.released = ko.observableArray([]);
+    
     self.editStoryId = ko.observable();
     self.editStoryTitle = ko.observable();
     self.editStoryText = ko.observable();
@@ -20,8 +48,37 @@ var StoryListModel = function() {
   	
     self.getStories = function() {
  
-		scrumbloxapi.getAllStories(self.currentStories);
-    }    
+		scrumbloxapi.getAllStories(self.loadStories);
+    }
+    
+    self.loadStories = function (data) {
+    	for (var i=0;i< data.length; i++)
+    	{
+    		story = data[i];
+    		
+    		switch (story.Status)
+    		{
+    			case 0:
+    				self.backlog.push(story);
+    				break;
+    			case 1:
+    				self.todo.push(story);
+    				break;
+    			case 2:
+    				self.doing.push(story);
+    				break;
+    			case 3:
+    				self.done.push(story);
+    				break;
+    			case 4:
+    				self.tested.push(story);
+    				break;
+    			case 5:
+    				self.released.push(story);
+    				break;
+    		}
+    	}
+    }
     
     ko.computed(function() {
         self.getStories();
@@ -90,11 +147,11 @@ var StoryListModel = function() {
     
 };
 
-$(function(){
- 	storyListModel = new StoryListModel();
-	ko.applyBindings(storyListModel);
- });
+storyListModel = new StoryListModel();
+ko.applyBindings(storyListModel);
+
  
+})(ko, jQuery);
 
 // Using jQuery for Ajax loading indicator - nothing to do with Knockout
 $(".loadingIndicator").ajaxStart(function() {

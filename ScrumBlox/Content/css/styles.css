@@ -22,6 +22,7 @@
 .stories .storyCard.update { background: #B2CCFF; }
 .stories .storyCard.support-request { background: #FFFF99; }
 
+.lane { border-right: 1px black solid; min-height: 400px; }
 .storyInfo, .storyTags { color: Black; font-size: 0.9em; margin-bottom: 5px; }
 .twitterUser { color: #77AAFF; text-decoration: none; font-size: 1.1em; font-weight: bold; }
 input.invalid { border: 1px solid red !important; background-color: #FFAAAA !important; }
@@ -30,3 +31,4 @@ input { margin-bottom: 9px; }
 textarea { width: 500px; height: 150px; }
 .loadingIndicator { position: absolute; top: 0.1em; left: 0.1em; font: 0.8em Arial; background-color: #229; color: White; padding: 0.2em 0.5em 0.2em 0.5em; display: none; }
 
+.ko_container { min-height: 300px; }
