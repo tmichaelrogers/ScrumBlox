@@ -93,7 +93,7 @@
 	        	<div class='loadingIndicator'><h1>Loading...</h1></div>
 	        	</div>
 	        	<div>
-				    <div data-bind="sortable: { data: backlog }">
+				    <div data-bind="sortable: { data: backlog }" id="0">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
@@ -105,7 +105,7 @@
 	        	<div class="span2 stories lane">
 	          		<div>To Do</div>
 	          		<div>
-					    <div data-bind="sortable: { data: todo }">
+					    <div data-bind="sortable: { data: todo }" id="1">
 							<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 					            	<h3 data-bind='text: Title'></h3>
 					                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
@@ -117,7 +117,7 @@
 	          <div class="span2 stories lane">
 	          	<div>Doing</div>
            		<div>
-				    <div data-bind="sortable: { data: doing }">
+				    <div data-bind="sortable: { data: doing }" id="2">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
@@ -129,7 +129,7 @@
 	          <div class="span2 stories lane">
 	          	<div>Done</div>
 	          	<div>
-				    <div data-bind="sortable: { data: done }">
+				    <div data-bind="sortable: { data: done }"  id="3">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
@@ -141,7 +141,7 @@
 	          <div class="span2 stories lane">
 	            <div>Tested</div>
 	          	<div>
-				    <div data-bind="sortable: { data: tested }">
+				    <div data-bind="sortable: { data: tested }" id="4">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>
@@ -153,7 +153,7 @@
 	          <div class="span2 stories lane">
 	            <div>Released</div>
 	          	<div>
-				    <div data-bind="foreach: released">
+				    <div data-bind="sortable: { data: released }" id="5">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css: $parent.storyTypeClass($data)'>
 				            	<h3 data-bind='text: Title'></h3>
 				                <div data-bind='foreach: (Tags+"").split(",")'><span class='label' data-bind='text: $data'></span></div>

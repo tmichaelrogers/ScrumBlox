@@ -25,6 +25,18 @@ ko.bindingHandlers.flash = {
     timeout: null
 };
 
+var StoryModel = function( story )
+{
+	var self = this;
+	
+	self.Title = ko.observable(story.Title);
+	self.UserStory = ko.observable(story.UserStory);
+	self.Tags = ko.observable(story.Tags);
+	self.Status = ko.observable(story.Status);
+	self.StoryPoints = ko.observable(story.StoryPoints);
+	self.StoryType = ko.observable(story.StoryType);
+}
+
 var StoryListModel = function() {
 
 	var self = this;
@@ -99,6 +111,14 @@ var StoryListModel = function() {
     	self.resetFields();
     };    
     
+    self.updateAfterMove = function (arg) {
+     	
+    	arg.item.Status = this.id;
+    	
+    	scrumbloxapi.saveStory(arg.item);
+    };
+    
+    
     self.editStory = function() {
     	var editStory = {
     		Id: self.editStoryId(),
@@ -148,8 +168,9 @@ var StoryListModel = function() {
 };
 
 storyListModel = new StoryListModel();
-ko.applyBindings(storyListModel);
 
+ko.bindingHandlers.sortable.afterMove = storyListModel.updateAfterMove;
+ko.applyBindings(storyListModel);
  
 })(ko, jQuery);
 
