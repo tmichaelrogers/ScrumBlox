@@ -97,6 +97,43 @@ var StoryListModel = function() {
   		self.editBlocked(!self.editBlocked());
   	}
   	
+  	self.getLaneTotal = function (arr)
+  	{
+  		var total = 0;
+  		
+  		for (var i=0; i<arr().length; i++)
+  		{
+  			total += arr()[i].StoryPoints();	
+  		}
+  		return total;
+  	};
+  	
+  	
+  	self.backlogTotal = ko.computed( function () {
+  		return self.getLaneTotal(self.backlog);
+  	});
+
+   	self.todoTotal = ko.computed( function () {
+  		return self.getLaneTotal(self.todo);
+  	});
+ 	
+   	self.doingTotal = ko.computed( function () {
+  		return self.getLaneTotal(self.doing);
+  	});
+ 	
+   	self.doneTotal = ko.computed( function () {
+  		return self.getLaneTotal(self.done);
+  	});  	  	  	
+
+   	self.testedTotal = ko.computed( function () {
+  		return self.getLaneTotal(self.tested);
+  	});  	    	  	  	  	  	  	  	  	  	  	  	  	
+
+	self.releasedTotal = ko.computed( function () {
+		return self.getLaneTotal(self.released);
+  	});   	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	
+
     self.getStories = function() {
  
 		scrumbloxapi.getAllStories(self.loadStories);

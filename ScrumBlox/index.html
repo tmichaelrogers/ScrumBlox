@@ -47,6 +47,17 @@
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li>
+              <div class="btn-group">
+				  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				    Filter
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu">
+				    <li><a tabindex="-1" href="#">Tag1</a></li>
+				  </ul>
+				</div>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -104,7 +115,7 @@
 		</div>
 		<div class="row-fluid">
 	        <div class="span2 stories lane">
-	        	<div>Backlog
+	        	<div>Backlog <span class="badge badge-info" data-bind="text: backlogTotal"></span>
 	        		<div class='loadingIndicator'><h1>Loading...</h1></div>
 	        	</div>
 	        	<div>
@@ -120,31 +131,31 @@
 	        	</div>
 	      	</div>
 	        	<div class="span2 stories lane">
-	          		<div>To Do</div>
+	          		<div>To Do <span class="badge badge-info" data-bind="text: todoTotal"></span></div>
 	          		<div>
 					    <div data-bind="sortable: { template: 'cardTmpl', data: todo }" id="0"></div>
 	        		</div>
           		</div>
 	          <div class="span2 stories lane">
-	          	<div>Doing</div>
+	          	<div>Doing <span class="badge badge-info" data-bind="text: doingTotal"></span></div>
            		<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: doing }" id="0"></div>
         		</div>	
 	          </div>
 	          <div class="span2 stories lane">
-	          	<div>Done</div>
+	          	<div>Done <span class="badge badge-info" data-bind="text: doneTotal"></span></div>
 	          	<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: done }" id="0"></div>
         		</div>
 			  </div>
 	          <div class="span2 stories lane">
-	            <div>Tested</div>
+	            <div>Tested <span class="badge badge-info" data-bind="text: testedTotal"></span></div>
 	          	<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: tested }" id="0"></div>
         		</div>
 			  </div>
 	          <div class="span2 stories lane">
-	            <div>Released</div>
+	            <div>Released <span class="badge badge-info" data-bind="text: releasedTotal"></span></div>
 	          	<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: released }" id="0"></div>
         		</div>
