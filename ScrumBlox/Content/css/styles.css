@@ -16,6 +16,8 @@
 	font-size: 12px;
 }
 
+h4 { display: inline; }
+
 /* Card Colors */
 .stories .storyCard.new-feature { background: #CCFFCC; }
 .stories .storyCard.bug { background: #FF9999; }
