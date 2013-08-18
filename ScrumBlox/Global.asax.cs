@@ -6,28 +6,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Http;
 
 namespace ScrumBlox
 {
 	public class MvcApplication : System.Web.HttpApplication
 	{
-		public static void RegisterRoutes (RouteCollection routes)
+		public static void RegisterRoutes(HttpConfiguration configuration)
 		{
-			routes.IgnoreRoute ("{resource}.axd/{*pathInfo}");
 
-			routes.MapRoute (
-                "Default",
-                "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = "" }
+			configuration.Routes.MapHttpRoute (
+				"All Story",
+				"Stories",
+				new { controller = "Story", action = "All" }
 			);
 
-			routes.MapRoute (
-				"Get Story",
+			configuration.Routes.MapHttpRoute (
+				"Single Story",
 				"Stories/{id}",
-				new { controller = "Story", action = "Get" }
+				new { controller = "Story", action = "SingleStory" }
 			);
-			
-			routes.MapRoute (
+
+
+			configuration.Routes.MapHttpRoute (
 				"Stories API",
 				"Stories/{id}/substories",
 				new { controller = "Story", action = "GetSubStories" }
@@ -38,7 +39,7 @@ namespace ScrumBlox
 		protected void Application_Start ()
 		{
 			AreaRegistration.RegisterAllAreas ();
-			RegisterRoutes (RouteTable.Routes);
+			RegisterRoutes (GlobalConfiguration.Configuration);
 		}
 	}
 }

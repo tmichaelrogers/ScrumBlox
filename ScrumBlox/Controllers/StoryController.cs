@@ -2,50 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 using ScrumBlox.Repositories;
 using ScrumBlox.Domain;
 
 namespace ScrumBlox.Controllers
 {
-    public class StoryController : Controller
+    public class StoryController : ApiController
     {
-        public ActionResult Index()
-        {
-            return View ();
-        }
 
 		[HttpGet]
-		public JsonResult All ()
+		public Story[] All()
 		{
 			Stories stories = new Stories();
 
-			return this.Json(stories.GetAll().ToList(), JsonRequestBehavior.AllowGet);
+			return stories.GetAll().ToArray();
 		}
 
 		[HttpGet]
-		public JsonResult Get (string id)
+		[ActionName("SingleStory")]
+		public Story Get (string id)
 		{
 			Stories stories = new Stories();
-			return this.Json ( stories.Load (new Guid(id)) );
+			return stories.Load (new Guid(id));
 		}
 
 		[HttpGet]
-		public JsonResult GetSubstories (string id)
+		public Story[] GetSubstories (string id)
 		{
 			Stories stories = new Stories();
 			Story myStory = stories.Load (new Guid(id));
-			return this.Json( stories.GetSubStories (myStory).ToList());
+			return stories.GetSubStories (myStory).ToArray();
 		}
 
 		[HttpPost]
-		public JsonResult Save (Story story)
+		[ActionName("SingleStory")]
+		public string Save (Story story)
 		{
 			Stories stories = new Stories();
 			stories.Save(story);
 
-			return this.Json(story.Id);
+			return story.Id.ToString();
 		}
     }
 }
