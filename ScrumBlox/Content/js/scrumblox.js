@@ -60,6 +60,7 @@ var StoryListModel = function() {
 	
     self.currentStories = ko.observableArray([]);
     
+    /* Lane Observables */
     self.backlog = ko.observableArray([]);
     self.todo = ko.observableArray([]);
     self.doing = ko.observableArray([]);
@@ -67,6 +68,7 @@ var StoryListModel = function() {
     self.tested = ko.observableArray([]);
     self.released = ko.observableArray([]);
     
+    /* Editing Fields */
     self.editStoryId = ko.observable("");
     self.editStoryTitle = ko.observable("");
     self.editStoryText = ko.observable("");
@@ -79,7 +81,6 @@ var StoryListModel = function() {
   	self.editStatus = ko.observable(0);
   	
   	self.storyBeingEdited = ko.observable();
-  	
   	
   	self.blockedButton = ko.computed( function () {
 		if (self.editBlocked())
@@ -96,6 +97,72 @@ var StoryListModel = function() {
   	self.toggleBlocked = function() {
   		self.editBlocked(!self.editBlocked());
   	}
+  	
+  	/* Lane Functions */
+  	
+  	self.isBacklogVisible = ko.observable(true);
+  	self.isTodoVisible = ko.observable(true);
+  	self.isDoingVisible = ko.observable(true);
+  	self.isDoneVisible = ko.observable(true);
+  	self.isTestedVisible = ko.observable(true);
+  	self.isReleasedVisible = ko.observable(true);
+  	
+  	self.laneFilterClick = function (arg, event) {
+  		var label = event.currentTarget.innerText;
+  		
+  		if (label=="Backlog")
+  			self.isBacklogVisible(!self.isBacklogVisible());
+  		if (label=="To Do")
+  			self.isTodoVisible(!self.isTodoVisible());
+  		if (label=="Doing")
+  			self.isDoingVisible(!self.isDoingVisible());
+  		if (label=="Done")
+  			self.isDoneVisible(!self.isDoneVisible());
+  		if (label=="Tested")
+  			self.isTestedVisible(!self.isTestedVisible());
+  		if (label=="Released")
+  			self.isReleasedVisible(!self.isReleasedVisible());
+  	};
+  	
+  	self.numLanesVisible = ko.computed(function (){
+  		var ct = 0;
+  		
+  		if (self.isBacklogVisible())
+  			ct++;
+  		if (self.isTodoVisible())
+  			ct++;
+  		if (self.isDoingVisible())
+  			ct++;
+  		if (self.isDoneVisible())
+  			ct++;
+  		if (self.isTestedVisible())
+  			ct++;
+  		if (self.isReleasedVisible())
+  			ct++;
+  			
+  		return ct;
+  			
+  	});
+  	
+  	self.laneSpanCss = ko.computed(function (){
+  		switch ( self.numLanesVisible())
+  		{
+  			case 1:
+  				return "span12";
+  			case 2:
+  				return "span6"; 
+  			case 3:
+  				return "span4"; 
+  			case 4:
+  				return "span3"; 
+  			case 5:
+  				return "span2"; 
+  			case 6:
+  				return "span2"; 
+  			default:
+  				return "span2";
+  		}
+  	});
   	
   	self.getLaneTotal = function (arr)
   	{

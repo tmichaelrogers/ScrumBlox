@@ -1,4 +1,4 @@
-
+body { background: #24688F; }
 .stories { border: 0px;  padding: 0.5em; }
 .new-story { padding: 10px; margin: 10px 5px; }
 .stories .storyCard { background: white; color: black; padding: 10px; margin: 10px 5px; border: 1px solid #CCCCCC; box-shadow: 5px 5px 5px #888888; }
@@ -24,7 +24,7 @@ h4 { display: inline; }
 .stories .storyCard.update { background: #B2CCFF; }
 .stories .storyCard.support-request { background: #FFFF99; }
 
-.lane { border-right: 1px black solid; min-height: 400px; }
+.lane { background: #d0d0d0; min-height: 400px;  }
 .storyInfo, .storyTags { color: Black; font-size: 0.9em; margin-bottom: 5px; }
 .twitterUser { color: #77AAFF; text-decoration: none; font-size: 1.1em; font-weight: bold; }
 input.invalid { border: 1px solid red !important; background-color: #FFAAAA !important; }

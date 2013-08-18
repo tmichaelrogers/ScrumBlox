@@ -30,7 +30,7 @@
 		<link href="Content/css/bootstrap-modal.css" rel="stylesheet" />
 	</head>
 	<body>
-	 <div class="navbar navbar-inverse navbar-fixed-top">
+	 <div class="navbar  navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -44,18 +44,16 @@
               Logged in as <a href="#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
               <li>
-              <div class="btn-group">
-				  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				    Filter
-				    <span class="caret"></span>
-				  </a>
-				  <ul class="dropdown-menu">
-				    <li><a tabindex="-1" href="#">Tag1</a></li>
-				  </ul>
+              <button type="button" class="btn btn-success" data-bind="click: editStoryClick"><i class="icon-plus icon-white"></i> New Story</button>	
+              
+			  	<div class="btn-group">
+				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isBacklogVisible }">Backlog</button>
+				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isTodoVisible }">To Do</button>
+				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isDoingVisible }">Doing</button>
+				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isDoneVisible }">Done</button>
+				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isTestedVisible }">Tested</button>
+				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isReleasedVisible }">Released</button>
 				</div>
               </li>
             </ul>
@@ -64,7 +62,7 @@
       </div>
     </div>
 	<div class="container-fluid">
-		<button type="button" data-bind="click: editStoryClick">New Story</button>	
+		
 		<div class="row-fluid">
 			<div id="editModel" class="modal hide fade" tabindex="-1" data-width="760">
 	
@@ -114,7 +112,7 @@
 			</div>
 		</div>
 		<div class="row-fluid">
-	        <div class="span2 stories lane">
+	        <div class="stories lane" data-bind="visible: isBacklogVisible, css: laneSpanCss">
 	        	<div><h4>Backlog</h4> <span class="badge badge-info" data-bind="text: backlogTotal"></span>
 	        		<div class='loadingIndicator'><h1>Loading...</h1></div>
 	        	</div>
@@ -122,39 +120,39 @@
 				    <div data-bind="sortable: { template: 'cardTmpl', data: backlog }" id="0"></div>
 				    <script id="cardTmpl" type="text/html">
 						<div class='storyCard' data-bind='click: $root.loadStoryForEditing, css:storyTypeClass()'>
-				            	<h3 data-bind='text: Title'></h3>
-				                <div data-bind='foreach: TagsOutput'><span class='label' data-bind='text: $data'></span></div>
+				            	<span class="label label-important" data-bind="visible: Blocked">Blocked</span><h3 data-bind='text: Title'></h3>
+				                <div data-bind='foreach: TagsOutput'><span class='label'><i class="icon-tag icon-white"></i> <span data-bind='text: $data'></span></span>&nbsp;</div>
 				                <div><span class='badge badge-info' data-bind='text: StoryPoints'></span></div>
-				                <div><span class="label label-important" data-bind="visible: Blocked">Blocked</span></div>
+		
 				        </div>
 				    </script>
 	        	</div>
 	      	</div>
-	        	<div class="span2 stories lane">
+	        	<div class="stories lane" data-bind="visible: isTodoVisible, css: laneSpanCss">
 	          		<div><h4>To Do</h4> <span class="badge badge-info" data-bind="text: todoTotal"></span></div>
 	          		<div>
 					    <div data-bind="sortable: { template: 'cardTmpl', data: todo }" id="1"></div>
 	        		</div>
           		</div>
-	          <div class="span2 stories lane">
+	          <div class="stories lane" data-bind="visible: isDoingVisible, css: laneSpanCss">
 	          	<div><h4>Doing</h4> <span class="badge badge-info" data-bind="text: doingTotal"></span></div>
            		<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: doing }" id="2"></div>
         		</div>	
 	          </div>
-	          <div class="span2 stories lane">
+	          <div class="stories lane" data-bind="visible: isDoneVisible, css: laneSpanCss">
 	          	<div><h4>Done</h4> <span class="badge badge-info" data-bind="text: doneTotal"></span></div>
 	          	<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: done }" id="3"></div>
         		</div>
 			  </div>
-	          <div class="span2 stories lane">
+	          <div class="stories lane" data-bind="visible: isTestedVisible, css: laneSpanCss">
 	            <div><h4>Tested</h4> <span class="badge badge-info" data-bind="text: testedTotal"></span></div>
 	          	<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: tested }" id="4"></div>
         		</div>
 			  </div>
-	          <div class="span2 stories lane">
+	          <div class="stories lane" data-bind="visible: isReleasedVisible, css: laneSpanCss">
 	            <div><h4>Released</h4> <span class="badge badge-info" data-bind="text: releasedTotal"></span></div>
 	          	<div>
 				    <div data-bind="sortable: { template: 'cardTmpl', data: released }" id="5"></div>
