@@ -143,6 +143,7 @@
     <Compile Include="Controllers\StoryController.cs">
       <DependentUpon>StoryController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />

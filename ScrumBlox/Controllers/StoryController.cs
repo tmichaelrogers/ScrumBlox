@@ -6,6 +6,7 @@ using System.Web.Http;
 
 using ScrumBlox.Repositories;
 using ScrumBlox.Domain;
+using ScrumBlox.Models;
 
 namespace ScrumBlox.Controllers
 {
@@ -44,6 +45,12 @@ namespace ScrumBlox.Controllers
 			stories.Save(story);
 
 			return story.Id.ToString();
+		}
+
+		[HttpGet]
+		public Story[] Search ([FromUri] SearchViewModel search)
+		{
+			throw new NotImplementedException ();
 		}
     }
 }

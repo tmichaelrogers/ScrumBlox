@@ -60,7 +60,15 @@ namespace ScrumBlox.Repositories
 
 		public MongoCursor<Story> GetSubStories(Story story)
 		{
-			return collection.FindAs<Story>(Query.In ("SubStories", new BsonArray(story.SubStories)));
+			return collection.FindAs<Story>(Query.In ("Id", new BsonArray(story.SubStories)));
+		}
+
+		public MongoCursor<Story> GetByTags(string tags)
+		{
+			string[] atags= tags.Split(',');
+			BsonArray batags = new BsonArray (atags);
+
+			return collection.FindAs<Story> (Query.In ("Tags", batags));
 		}
 
 	}
