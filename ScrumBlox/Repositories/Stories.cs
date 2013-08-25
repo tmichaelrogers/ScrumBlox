@@ -42,6 +42,27 @@ namespace ScrumBlox.Repositories
 			collection.Save (story);
 		}
 
+		public void UpdateSequence(Guid id, int seq, STORY_STATUS status)
+		{
+			// Don't update the sequence of archived cards
+			var query = Query.And 
+				(
+					Query.EQ ("Status", status),
+					Query.EQ ("Archived", false),
+					Query.GTE ("Sequence", seq)
+				);
+
+			var update = Update.Inc ("Sequence", 1);
+			var soryBy = SortBy.Ascending("Sequence");
+
+			collection.FindAndModify (query, soryBy, update);
+
+			query = Query.EQ ("_id", id);
+			update = Update.Set ("Sequence", seq).Set("Status",status);
+			collection.FindAndModify (query, soryBy, update);
+
+		}
+
 		public Story Load (Guid id)
 		{
 			var query = Query.EQ("_id", id);
@@ -50,7 +71,8 @@ namespace ScrumBlox.Repositories
 
 		public MongoCursor<Story> GetAll()
 		{
-			return collection.FindAllAs<Story>();
+			var sort = SortBy.Ascending ("Status","Sequence");
+			return collection.FindAllAs<Story>().SetSortOrder(sort);
 		}
 		/*public Story GetByEmail (string email)
 		{

@@ -27,6 +27,11 @@ namespace ScrumBlox
 				new { controller = "Story", action = "SingleStory" }
 			);
 
+			configuration.Routes.MapHttpRoute (
+				"Update Sequence",
+				"Stories/{id}/Sequence",
+				new { controller = "Story", action = "UpdateSequence" }
+			);
 
 			configuration.Routes.MapHttpRoute (
 				"Stories API",

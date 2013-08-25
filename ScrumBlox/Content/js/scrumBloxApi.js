@@ -1,7 +1,7 @@
 window.scrumbloxapi = new function () {
     this.getAllStories = function (callback) {
             	$.ajax({
-	                url: 'http://127.0.0.1:8080/Stories',
+            	    url: 'http://127.0.0.1:8080/Stories',
 	                dataType: "json",
 	                headers: {'Accept':'application/json'},
 	                success: function (data) 
@@ -13,7 +13,7 @@ window.scrumbloxapi = new function () {
 
     this.saveStory = function (story, callback) {
             	$.post(
-	                'http://127.0.0.1:8080/Stories/'+story.Id(),
+	                'http://127.0.0.1:8080/Stories/' + story.Id,
 	                story,
 	                function (data) 
 	                { 
@@ -23,4 +23,15 @@ window.scrumbloxapi = new function () {
                 );
     };
 
+	this.updateSequence = function (storyId, newSequence, currentStatus, callback) {
+            	$.post(
+	                'http://127.0.0.1:8080/Stories/' + storyId + '/Sequence',
+	                { Sequence: newSequence, Status : currentStatus },
+	                function (data) 
+	                { 
+	                	if (callback) callback(data); 
+	                },
+	                "json"
+                );		
+	};
 };

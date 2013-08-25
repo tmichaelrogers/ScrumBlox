@@ -10,8 +10,8 @@ using ScrumBlox.Models;
 
 namespace ScrumBlox.Controllers
 {
-    public class StoryController : ApiController
-    {
+    public class StoryController :System.Web.Http.ApiController
+	{
 
 		[HttpGet]
 		public Story[] All()
@@ -38,14 +38,35 @@ namespace ScrumBlox.Controllers
 		}
 
 		[HttpPost]
+		public bool UpdateSequence (string id, [FromBody] Story story)
+		{
+			Stories stories = new Stories();
+			stories.UpdateSequence (new Guid(id), story.Sequence, (STORY_STATUS)story.Status);
+
+			return true;
+		}
+
+		[HttpPost]
 		[ActionName("SingleStory")]
 		public string Save (Story story)
 		{
-			Stories stories = new Stories();
-			stories.Save(story);
-
-			return story.Id.ToString();
+            return SaveStory(story);
 		}
+
+        private static string SaveStory(Story story)
+        {
+            Stories stories = new Stories();
+            stories.Save(story);
+
+            return story.Id.ToString();
+        }
+
+        [HttpPost]
+        [ActionName("All")]
+        public string Create(Story story)
+        {
+            return SaveStory(story);
+        }
 
 		[HttpGet]
 		public Story[] Search ([FromUri] SearchViewModel search)

@@ -33,6 +33,8 @@ namespace ScrumBlox.Domain
 		public int Sequence { get; set; }
 		public STORY_STATUS Status {get;set;}
 		public bool Blocked {get;set;}
+		public bool Archived {get;set;}
+
 		public List<Guid> SubStories { get; set; }
 		public List<String> AcceptanceCriteria { get; set; }
 	}
