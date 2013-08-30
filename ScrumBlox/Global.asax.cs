@@ -38,7 +38,6 @@ namespace ScrumBlox
 				"Stories/{id}/substories",
 				new { controller = "Story", action = "GetSubStories" }
 			);
-
 		}
 
 		protected void Application_Start ()

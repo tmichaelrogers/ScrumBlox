@@ -1,6 +1,6 @@
-// The view model holds all the state we're working with. It also has methods that can edit it, and it uses
 // computed observables to calculate more state in terms of the underlying data
 // --
+// The view model holds all the state we're working with. It also has methods that can edit it, and it uses
 // The view (i.e., the HTML UI) binds to this using data-bind attributes, so it always stays up-to-date with
 // the view model, even though the view model does not know or care about any view that binds to it
 //var stories = [{"Id":"5117babc375e4fe1abe5445b","UserStory":"As a user I want to perform an action so that I can blah.","Tags":null,"AssignedTo":null,"CreatedBy":null,"StoryPoints":0,"Tasks":[{"Id":"5117babc375e4fe1abe5445a","Title":"Edit CSS","AssignedTo":"mrogers@brainloaf.com","Done":false}],"AcceptanceCriteria":[]}];
@@ -196,10 +196,58 @@
             return self.getLaneTotal(self.released);
         });
 
+		self.selectedFilterTags = ko.observableArray([]);
+
+		/* Filter Functions */
+		//self.tagList = ko.observableArray([]);
+		
+		self.caseInsensitiveSort = function (a, b) 
+		{ 
+		   var ret = 0;
+		   a = a.toLowerCase();b = b.toLowerCase();
+		   if(a > b) 
+		      ret = 1;
+		   if(a < b) 
+		      ret = -1; 
+		   return ret;
+		}
+		
+		self.tagList = ko.computed(function(){
+			/* Add to unique list of tags */
+        	var theTags = [];
+        	
+        	for (var scix=0; scix<self.currentStories().length;scix++)
+        	{   
+        		var story = self.currentStories()[scix];
+        		
+                if (story && story.Tags())
+                {
+                	var tags=story.Tags().split(',');
+                	for(var t=0; t<tags.length; t++)
+                	{
+                		if (theTags.indexOf(tags[t])==-1)
+                		{
+                			theTags.push(tags[t]);
+                		}
+                	}
+                }	
+            }
+            theTags.sort(self.caseInsensitiveSort);
+            
+            return theTags;
+		});
 
         self.getStories = function () {
-
-            scrumbloxapi.getAllStories(self.loadStories);
+			// reset arrays
+			self.currentStories.removeAll();
+			self.backlog.removeAll();
+			self.todo.removeAll();
+			self.doing.removeAll();
+			self.done.removeAll();
+			self.tested.removeAll();
+			self.released.removeAll();
+			
+            scrumbloxapi.getAllStories(ko.toJS(self.selectedFilterTags()), self.loadStories);
         }
 
         self.insertStoryModel = function (story) {
@@ -235,26 +283,28 @@
             for (var i = 0; i < data.length; i++) {
                 story = data[i];
 
+				var newModel = new StoryModel(story);
                 switch (story.Status) {
                     case 0:
-                        self.backlog.push(new StoryModel(story));
+                        self.backlog.push(newModel);
                         break;
                     case 1:
-                        self.todo.push(new StoryModel(story));
+                        self.todo.push(newModel);
                         break;
                     case 2:
-                        self.doing.push(new StoryModel(story));
+                        self.doing.push(newModel);
                         break;
                     case 3:
-                        self.done.push(new StoryModel(story));
+                        self.done.push(newModel);
                         break;
                     case 4:
-                        self.tested.push(new StoryModel(story));
+                        self.tested.push(newModel);
                         break;
                     case 5:
-                        self.released.push(new StoryModel(story));
+                        self.released.push(newModel);
                         break;
                 }
+                self.currentStories.push(newModel);
             }
         }
 
@@ -262,7 +312,19 @@
             self.getStories();
         }, self);
 
-
+		self.addOrRemoveTagFromFilter = function (tag)
+		{
+			// add or remove the clicked tag from the filter list
+			if (self.selectedFilterTags.indexOf(tag)==-1)
+			{
+				self.selectedFilterTags.push(tag);
+			}
+			else
+			{	
+				self.selectedFilterTags.remove(tag);
+			}
+			//self.getStories();
+		}
 
         self.editStoryClick = function () {
             self.editStoryVisible(true);

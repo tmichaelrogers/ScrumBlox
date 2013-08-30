@@ -1,7 +1,13 @@
 window.scrumbloxapi = new function () {
-    this.getAllStories = function (callback) {
+    this.getAllStories = function (tagArray, callback) {
+    			var parameters='';
+    			
+    			if (tagArray.length!=0)
+    			{
+    				parameters = '?tags='+encodeURIComponent(tagArray.toString())
+    			}
             	$.ajax({
-            	    url: 'http://127.0.0.1:8080/Stories',
+            	    url: '/Stories'+parameters,
 	                dataType: "json",
 	                headers: {'Accept':'application/json'},
 	                success: function (data) 
@@ -9,11 +15,12 @@ window.scrumbloxapi = new function () {
 	                error: function (xhr,status,error)
 	                { alert(error); }
                 });
+                
     };
 
     this.saveStory = function (story, callback) {
             	$.post(
-	                'http://127.0.0.1:8080/Stories/' + story.Id,
+	                '/Stories/' + story.Id,
 	                story,
 	                function (data) 
 	                { 
@@ -25,7 +32,7 @@ window.scrumbloxapi = new function () {
 
 	this.updateSequence = function (storyId, newSequence, currentStatus, callback) {
             	$.post(
-	                'http://127.0.0.1:8080/Stories/' + storyId + '/Sequence',
+	                '/Stories/' + storyId + '/Sequence',
 	                { Sequence: newSequence, Status : currentStatus },
 	                function (data) 
 	                { 

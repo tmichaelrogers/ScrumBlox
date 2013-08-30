@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using MongoDB.Driver.Linq;
 
 using ScrumBlox.Domain;
 
@@ -87,10 +89,17 @@ namespace ScrumBlox.Repositories
 
 		public MongoCursor<Story> GetByTags(string tags)
 		{
-			string[] atags= tags.Split(',');
-			BsonArray batags = new BsonArray (atags);
+			List<string> atags= tags.Split(',').ToList();
+			//BsonArray batags = new  BsonArray (atags);
 
-			return collection.FindAs<Story> (Query.In ("Tags", batags));
+
+			List<IMongoQuery> myarray = new List<IMongoQuery>();
+			foreach(string t in atags)
+			{
+				myarray.Add(Query.Matches("Tags", t));
+			}
+
+			return collection.FindAs<Story>(Query.Or(myarray));
 		}
 
 	}

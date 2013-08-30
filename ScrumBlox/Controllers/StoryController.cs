@@ -14,11 +14,14 @@ namespace ScrumBlox.Controllers
 	{
 
 		[HttpGet]
-		public Story[] All()
+		public Story[] All([FromUri] SearchViewModel search)
 		{
-			Stories stories = new Stories();
-
-			return stories.GetAll().ToArray();
+			Stories stories = new Stories ();
+			if (search.tags!=null && search.tags.Length > 0) {
+				return stories.GetByTags (search.tags).ToArray();
+			} else {
+				return stories.GetAll().ToArray();
+			}
 		}
 
 		[HttpGet]
@@ -68,10 +71,5 @@ namespace ScrumBlox.Controllers
             return SaveStory(story);
         }
 
-		[HttpGet]
-		public Story[] Search ([FromUri] SearchViewModel search)
-		{
-			throw new NotImplementedException ();
-		}
     }
 }

@@ -44,14 +44,11 @@
               Logged in as <a href="#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
-            	<li>
+            	<li class="btn-group">
             	  <button type="button" class="btn btn-success" data-bind="click: editStoryClick"><i class="icon-plus icon-white"></i> New Story</button>	
 				</li>
-            </ul>
-            
-            <ul class="nav">
-              <li>              
-			  	<div class="btn-group">
+              <li class="btn-group">              
+			  	<div >
 				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isBacklogVisible }">Backlog</button>
 				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isTodoVisible }">To Do</button>
 				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isDoingVisible }">Doing</button>
@@ -60,9 +57,16 @@
 				  <button class="btn" data-bind="click: laneFilterClick, css: { active: isReleasedVisible }">Released</button>
 				</div>
               </li>
-            </ul>
+				<li style="margin-left:10px">
               <form class="navbar-search pull-left"><input type="text" class="search-query span2" placeholder="Search" /></form>
-
+				</li>
+				<li class="dropdown">
+				  <a  id="filter" class="dropdown-toggle" data-toggle="dropdown" href="#">Filter Cards<b class="caret"></b></a>
+				  <ul class="dropdown-menu" role="menu" data-bind="foreach: tagList" >
+				    <li role="presentation"><a role="menuitem" href="#" data-bind="text: $data, click: function() { $root.addOrRemoveTagFromFilter($data)}"></a></li>
+				  </ul>
+			  	</li>
+			</ul>
            </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -115,6 +119,13 @@
 					    	</div>
 		
 					</form>
+			</div>
+		</div>
+		<div class="row-fluid ">
+
+			<div class="span12 well">
+				<div class="pull-left">Filtered&nbsp;by:</div>
+				<div data-bind='foreach: selectedFilterTags' class="pull-left"><span class='label'><i class="icon-tag icon-white"></i> <span data-bind='text: $data'></span></span>&nbsp;</div>
 			</div>
 		</div>
 		<div class="row-fluid">
