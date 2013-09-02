@@ -65,30 +65,30 @@ namespace ScrumBlox.Tests
 
 		}
 
-		[Test]
-		public void CanGetSubStories()
-		{
-			Stories stories = new Stories();
-
-			Story newStory = new Story();
-
-			newStory.UserStory= "As a user I want to perform an action so that I can blah.";
-
-			Story subStory = new Story();
-
-			subStory.AssignedTo = "mrogers@brainloaf.com";
-
-			stories.Save (subStory);
-
-			newStory.SubStories.Add (subStory.Id);
-
-			stories.Add(newStory);
-
-			var substories = stories.GetSubStories (newStory);
-
-			Assert.AreEqual (1, substories.Count());
-
-		}
+//		[Test]
+//		public void CanGetSubStories()
+//		{
+//			Stories stories = new Stories();
+//
+//			Story newStory = new Story();
+//
+//			newStory.UserStory= "As a user I want to perform an action so that I can blah.";
+//
+//			Story subStory = new Story();
+//
+//			subStory.AssignedTo = "mrogers@brainloaf.com";
+//
+//			stories.Save (subStory);
+//
+//			newStory.SubStories.Add (subStory.Id);
+//
+//			stories.Add(newStory);
+//
+//			var substories = stories.GetSubStories (newStory);
+//
+//			Assert.AreEqual (1, substories.Count());
+//
+//		}
 
 
 

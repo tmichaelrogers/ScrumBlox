@@ -44,7 +44,7 @@ namespace ScrumBlox.Repositories
 			collection.Save (story);
 		}
 
-		public void UpdateSequence(Guid id, int seq, STORY_STATUS status)
+		public void UpdateSequence(string id, int seq, STORY_STATUS status)
 		{
 			// Don't update the sequence of archived cards
 			var query = Query.And 
@@ -59,15 +59,15 @@ namespace ScrumBlox.Repositories
 
 			collection.FindAndModify (query, soryBy, update);
 
-			query = Query.EQ ("_id", id);
+			query = Query.EQ ("_id",new ObjectId(id));
 			update = Update.Set ("Sequence", seq).Set("Status",status);
 			collection.FindAndModify (query, soryBy, update);
 
 		}
 
-		public Story Load (Guid id)
+		public Story Load (string id)
 		{
-			var query = Query.EQ("_id", id);
+			var query = Query.EQ("_id", new ObjectId(id));
 			return collection.FindOneAs<Story>(query);
 		}
 
@@ -82,10 +82,10 @@ namespace ScrumBlox.Repositories
 			return collection.FindOneAs<Story>(query);
 		}*/
 
-		public MongoCursor<Story> GetSubStories(Story story)
-		{
-			return collection.FindAs<Story>(Query.In ("Id", new BsonArray(story.SubStories)));
-		}
+//		public MongoCursor<Story> GetSubStories(Story story)
+//		{
+//			return collection.FindAs<Story>(Query.In ("_id", new BsonArray(story.SubStories)));
+//		}
 
 		public MongoCursor<Story> GetByTags(string tags)
 		{

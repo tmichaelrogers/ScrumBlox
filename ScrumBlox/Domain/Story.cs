@@ -15,13 +15,14 @@ namespace ScrumBlox.Domain
 	{
 		public Story ()
 		{
-			SubStories = new List<Guid>();
+			SubStories = new List<String>();
 			AcceptanceCriteria = new List<String>();
 
 		}
 
-		[BsonId(IdGenerator = typeof(GuidGenerator))]
-		public Guid Id { get; set; }
+		[BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
 		public string Title { get; set; }
 		public string UserStory { get; set; }
 		public string Tags { get; set; }
@@ -35,7 +36,7 @@ namespace ScrumBlox.Domain
 		public bool Blocked {get;set;}
 		public bool Archived {get;set;}
 
-		public List<Guid> SubStories { get; set; }
+		public List<String> SubStories { get; set; }
 		public List<String> AcceptanceCriteria { get; set; }
 	}
 }

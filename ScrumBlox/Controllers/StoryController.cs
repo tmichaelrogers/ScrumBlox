@@ -29,22 +29,22 @@ namespace ScrumBlox.Controllers
 		public Story Get (string id)
 		{
 			Stories stories = new Stories();
-			return stories.Load (new Guid(id));
+			return stories.Load (id);
 		}
 
-		[HttpGet]
-		public Story[] GetSubstories (string id)
-		{
-			Stories stories = new Stories();
-			Story myStory = stories.Load (new Guid(id));
-			return stories.GetSubStories (myStory).ToArray();
-		}
+//		[HttpGet]
+//		public Story[] GetSubstories (string id)
+//		{
+//			Stories stories = new Stories();
+//			Story myStory = stories.Load (id);
+//			return stories.GetSubStories (myStory).ToArray();
+//		}
 
 		[HttpPost]
 		public bool UpdateSequence (string id, [FromBody] Story story)
 		{
 			Stories stories = new Stories();
-			stories.UpdateSequence (new Guid(id), story.Sequence, (STORY_STATUS)story.Status);
+			stories.UpdateSequence (id, story.Sequence, (STORY_STATUS)story.Status);
 
 			return true;
 		}
